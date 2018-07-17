@@ -2,6 +2,16 @@ require './config/environment'
 
 class UsersController < ApplicationController
 
+  get '/users/:slug' do
+    if Helpers.is_logged_in?(session)
+      @current_user = User.find_by_slug(params[:slug])
+      
+      erb :'/users/show'
+    else
+      redirect to '/login'
+    end
+  end
+
   get '/signup' do
     if Helpers.is_logged_in?(session)
       redirect to '/tweets'
@@ -45,16 +55,6 @@ class UsersController < ApplicationController
     session.clear
 
     redirect '/login'
-  end
-
-  get '/users/:slug' do
-    if Helpers.is_logged_in?(session)
-      @current_user = User.find_by_slug(params[:slug])
-      
-      erb :'/users/show'
-    else
-      redirect to '/login'
-    end
   end
 
 end
