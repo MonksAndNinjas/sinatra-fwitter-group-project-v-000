@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     if Helpers.is_logged_in?(session)
       @current_user = User.find_by_slug(params[:slug])
-      
+
       erb :'/users/show'
     else
       redirect to '/login'
