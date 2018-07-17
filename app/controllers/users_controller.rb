@@ -3,13 +3,13 @@ require './config/environment'
 class UsersController < ApplicationController
 
   get '/users/:slug' do
-    if Helpers.is_logged_in?(session)
+    #if Helpers.is_logged_in?(session)
       @current_user = User.find_by_slug(params[:slug])
 
       erb :'/users/show'
-    else
-      redirect to '/login'
-    end
+    #else
+    #  redirect to '/login'
+    #end
   end
 
   get '/signup' do
