@@ -39,9 +39,11 @@ class TweetsController < ApplicationController
       @current_user = User.find_by_id(session[:user_id])
       @current_user.tweets << Tweet.new(params)
       @current_user.save
-    end
 
-    redirect to '/tweets'
+      redirect to '/tweets'
+    else
+      redirect to '/tweets/new'
+    end
   end
 
   patch '/tweets/:id' do
