@@ -33,6 +33,7 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id/edit' do
+    @current_user = User.find_by_id(session[:user_id])
     if Helpers.is_logged_in?(session)
       @tweet = Tweet.find_by_id(params[:id])
 
