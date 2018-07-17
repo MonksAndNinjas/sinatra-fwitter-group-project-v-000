@@ -35,6 +35,7 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
+    if !params[:content].empty?
     @current_user = User.find_by_id(session[:user_id])
     @current_user.tweets << Tweet.new(params)
     @current_user.save
