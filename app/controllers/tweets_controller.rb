@@ -35,6 +35,7 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
+    @current_user = User.find_by_id(session[:user_id])
     @tweet = Tweet.new(params)
     @tweet.save
 
